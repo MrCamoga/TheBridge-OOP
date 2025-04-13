@@ -90,68 +90,103 @@ const maya = new Maya();
 
 aztec.drinkNesquik();
 maya.drinkColaCao();
-aztec.defend(maya.attack())
-maya.defend(aztec.attack())
+aztec.defend(maya.attack());
+maya.defend(aztec.attack());
 aztec.print();
 maya.print();
 
 // gallery
 
+const civilAircrafts = [
+	"assets/avion-civil-1.jpg",
+	"assets/avion-civil-2.jpg",
+	"assets/avion-civil-3.jpg",
+	"assets/avion-civil-4.jpg",
+	"assets/avion-civil-5.jpg",
+];
+
+const militaryAircrafts = [
+	"assets/avion-militar-1.jpg",
+	"assets/avion-militar-2.jpg",
+	"assets/avion-militar-3.jpg",
+	"assets/avion-militar-4.jpg",
+	"assets/avion-militar-5.jpg",
+];
+
+const civilHelicopters = [
+	"assets/helicoptero-civil-1.jpg",
+	"assets/helicoptero-civil-2.jpg",
+	"assets/helicoptero-civil-3.jpg",
+	"assets/helicoptero-civil-4.jpg",
+	"assets/helicoptero-civil-5.jpg",
+];
+
+const militaryHelicopter = [
+	"assets/helicoptero-militar-1.jpg",
+	"assets/helicoptero-militar-2.jpg",
+	"assets/helicoptero-militar-3.jpg",
+	"assets/helicoptero-militar-4.jpg",
+	"assets/helicoptero-militar-5.jpg",
+];
+
 class Gallery {
-    constructor(civil,military) {
-        this.civil = civil;
-        this.military = military;
-    }
+	constructor(civil, military) {
+		this.civil = civil;
+		this.military = military;
+	}
 
-    getRandomCivil() {
-        return this.civil[Math.floor(Math.random()*this.civil.length)];
-    }
+	getRandomCivil() {
+		return this.civil[Math.floor(Math.random() * this.civil.length)];
+	}
 
-    getRandomMilitary() {
-        return this.military[Math.floor(Math.random()*this.military.length)];
-    }
+	getRandomMilitary() {
+		return this.military[Math.floor(Math.random() * this.military.length)];
+	}
 
-    getAll() {
-        return [...this.civil,...this.military];
-    }
+	getAll() {
+		return [...this.civil, ...this.military];
+	}
 }
 
 class Painter {
-    constructor() {
-        this.createGallery();
-    }
+	constructor() {
+		this.createGallery();
+	}
 
-    createGallery() {
-        this.gallery = document.createElement("section");
-    }
+	createGallery() {
+		this.gallery = document.createElement("section");
+	}
 
-    createImageTag(url) {
-        const picture = document.createElement("picture");
-        const img = document.createElement("img");
-        img.setAttribute("src",url);
-        picture.appendChild(img);
-        return picture;
-    }
-    
-    paintSingleImage(url) {
-        this.gallery.appendChild(this.createImageTag(url));
-    }
+	createImageTag(url) {
+		const picture = document.createElement("picture");
+		const img = document.createElement("img");
+		img.setAttribute("src", url);
+		picture.appendChild(img);
+		return picture;
+	}
 
-    paintMultipleImages(...urls) {
-        urls.forEach(url => this.paintSingleImage(url));
-    }
+	paintSingleImage(url) {
+		this.gallery.appendChild(this.createImageTag(url));
+	}
+
+	paintMultipleImages(...urls) {
+		urls.forEach((url) => this.paintSingleImage(url));
+	}
 }
 
-const gallery = new Gallery([12,3,56],[1,2,5,78]);
-console.log(gallery.getRandomCivil())
-console.log(gallery.getRandomMilitary())
-console.log(gallery.getAll())
-
+const aircrafts = new Gallery(civilAircrafts, militaryAircrafts);
+const helicopters = new Gallery(civilHelicopters, militaryHelicopter);
 const painter = new Painter();
-painter.paintSingleImage("imgs/img.png")
-painter.paintMultipleImages("a","e","dweirtirew");
 
-console.log(painter.gallery)
+console.log(aircrafts.getRandomCivil());
+console.log(aircrafts.getRandomMilitary());
+console.log(aircrafts.getAll());
+console.log(helicopters.getRandomCivil());
+console.log(helicopters.getRandomMilitary());
+console.log(helicopters.getAll());
+
+console.log(painter.gallery);
+painter.paintSingleImage(civilAircrafts[0]);
 
 
 
